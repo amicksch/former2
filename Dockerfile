@@ -12,11 +12,11 @@ RUN    yum update -y  \
     && rm /etc/nginx/nginx.conf.default
 
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./timeout.conf /etc/nginx/conf.d/timeout.conf
+COPY ./docker-files/nginx.conf /etc/nginx/nginx.conf
+COPY ./docker-files/timeout.conf /etc/nginx/conf.d/timeout.conf
 COPY --chown=nginx entrypoint.sh /var/entrypoint/entrypoint.sh
 COPY --chown=nginx . /usr/share/nginx/html
-COPY ./former2-fargate.conf /etc/nginx/sites-available/former2.conf
+COPY ./docker-files/former2-fargate.conf /etc/nginx/sites-available/former2.conf
 
 ENTRYPOINT ["/var/entrypoint/entrypoint.sh"]
 CMD ["nginx"]
